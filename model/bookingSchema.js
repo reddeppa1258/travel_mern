@@ -20,26 +20,21 @@ export const bookingSchema = new mongoose.Schema({
 
     },
     user:{
-        id:{
+        
            type:mongoose.Schema.Types.ObjectId,
            ref:"user",
            required:true
-        },
-        name:{
-            type:String,
-            required:true
-        },
-      tours:{
-        id:{
+        
+       
+      
+    } ,
+    tours:{
+        
             type:mongoose.Schema.Types.ObjectId,
             ref:'tours',
             required:true
-        },
-        location:{
-            type:String,
-            required:true,
-        }
+    
+        
       }
-    } 
 })
 export default mongoose.model("bookings",bookingSchema)

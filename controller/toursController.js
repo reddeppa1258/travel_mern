@@ -21,7 +21,7 @@ export const CreateTour = async (req, res) => {
             heading,
             price,
             user: {
-                id: userid,
+                id: user._id,
                 name: user.username
             }
         })
@@ -47,4 +47,20 @@ export const getalltours = async(req,res,next)=>{
         return res.status(401).json({success:false,messsage:"internal server error"})
         
     }
+}
+
+export const getsingletour = async(req,res,next)=>{
+
+    const tourid = req.params.id;
+    try {
+        const tour = await tours.findById(tourid)
+        if(!tour){
+            return res.status(404).json({sucess:false,message:"tour not found"})
+        }
+        return res.status(200).json({success:true,message:"tour found",tour})
+    } catch (error) {
+        return res.status(500).json({success:false,message:"invalid error"})
+        
+    }
+
 }
