@@ -18,6 +18,10 @@ price:{
     type:String,
     required:true
 },
+distance:{
+    type:String,
+    required:true,
+},
 user : {
     id:{
         type:mongoose.Schema.Types.ObjectId,
