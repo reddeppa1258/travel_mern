@@ -10,7 +10,7 @@ export const bookingSchema = new mongoose.Schema({
         required:true,
 
     },
-    time:{
+    date:{
         type:Date,
         required:true,
     },
