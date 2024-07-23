@@ -19,7 +19,7 @@ export const authnticate = (req,res,next)=>{
             return res.status(403).json({success:false,message:"token expired"})
         
         }
-        return res.status(500).json({success:false,message:"internal server error"})
+        return res.status(500).json({success:false,message:"internal server error",error:error.message})
     }
 }
  
