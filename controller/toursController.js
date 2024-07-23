@@ -2,7 +2,7 @@ import tours from "../model/tourSchema.js"
 import User from "../model/UserSchema.js"
 
 export const CreateTour = async (req, res) => {
-    const { img, location, heading, price } = req.body;
+    const { img, location, heading, price,distance } = req.body;
     console.log(img, location, heading, price)
 
     const userid = req.userId;
@@ -20,6 +20,7 @@ export const CreateTour = async (req, res) => {
             location,
             heading,
             price,
+            distance,
             user: {
                 id: user._id,
                 name: user.username
