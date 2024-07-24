@@ -6,6 +6,7 @@ import userRoute from "./Routes/userRouter.js"
 import tourRoute from "./Routes/tourRoute.js"
 import cors from "cors"
 import BookingRoute from "./Routes/bookRoute.js"
+import ReviewRoute from "./Routes/ReviewRoute.js"
  dotenv.config();
 const  app = express();
 
@@ -42,6 +43,7 @@ app.use(cookieParser());
 app.use("/api/v1/users",userRoute)
 app.use("/api/v1/tour",tourRoute)
 app.use("/api/v1/slot",BookingRoute)
+app.use("/api/v1/review",ReviewRoute)
 
 
 
