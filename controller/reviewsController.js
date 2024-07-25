@@ -6,7 +6,7 @@ export const createReview = async (req, res, next) => {
   const { ratings, comment } = req.body;
   const userid = req.userId;
   const tourid = req.params.id;
-
+console.log(userid)
   try {
     const review = new Reviews({
       ratings,
@@ -42,18 +42,19 @@ export const getallreviews = async(req,res,next)=>{
   }
 }
 
-export const getsinglreview = async(req,res,next)=>{
-
-  const reviewid = req.params.id;
-  try {
-      const reviews = await Reviews.findById(reviewid)
-      if(!reviews){
-          return res.status(404).json({sucess:false,message:"tour not found"})
-      }
-      return res.status(200).json({success:true,message:"tour found",reviews})
-  } catch (error) {
-      return res.status(500).json({success:false,message:"invalid error"})
-      
-  }
+export const getlocationreview = async(req,res,next)=>{
+   let tourid = req.params.id;
+   tourid =tourid.trim();
+   console.log(tourid);
+  
+   
+   try {
+    const review =await Reviews.find({tours:tourid}).populate('user')
+    return res.status(200).json({success:true,message:"reviews found",review})
+   } catch (error) {
+    return res.status(500).json({success:false,message:"internal server error",error:error.message})
+    
+   }
+ 
 
 }

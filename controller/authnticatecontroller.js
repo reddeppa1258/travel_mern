@@ -4,12 +4,15 @@ export const authnticate = (req,res,next)=>{
     const authToken = req.headers.authorization;
     console.log(authToken)
 
-    if(!authToken || !authToken.startsWith("Bearer")){
+    if(!authToken){
         return res.status(404).json({success:false,message:"no token , authntication denied"})
     }
     try {
         const token =authToken.split(" ")[1]
+        console.log("token",token, typeof(token))
+        const accesstoken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGU2ODAwZmI1YTAyMTM4MjIzNWFhMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzIxODA2NjY1LCJleHAiOjE3MjE5Nzk0NjV9.vTYI0fE1jeHEm_YXnJY7WfHmBXZkmQXheboEQvlpTYM"
         const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY)
+        console.log("decoded",decoded)
         req.userId = decoded.id
         console.log("userid",req.userId)
         req.role = decoded.role;
