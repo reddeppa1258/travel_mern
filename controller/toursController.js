@@ -65,3 +65,18 @@ export const getsingletour = async(req,res,next)=>{
     }
 
 }
+export const searchtour=async(req,res,next)=>{
+    const {location,distance } =req.query;
+    const searchcriteria={};
+    if(location)searchcriteria.location=location
+    if(distance)searchcriteria.distance=distance
+    console.log(searchcriteria)
+    try {
+        const Tours= await tours.find(searchcriteria)
+        res.status(200).json({sucess:true,message:'search tour found',tour:Tours})
+    } catch (error) {
+        return res.status(500).json({success:false,message:"internal server error"})
+    }
+
+    
+}

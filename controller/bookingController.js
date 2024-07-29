@@ -31,3 +31,28 @@ export const bookingtour = async(req,res)=>{
     }
 
 }
+
+export const getlocationbooking = async(req,res,next)=>{
+    let tourid = req.params.id;
+    tourid =tourid.trim();
+    
+    const userid = req.userId;
+
+   
+    if(!userid ||  tourid){
+        return res.status(404).json({success:"userid and tourid not found"})
+
+    }
+   
+    
+    try {
+    let bookings =await Booking.find({tours:tourid,tours:userid}).populate('user').populate("tours")
+    bookings =await Booking.find({tours:userid})
+     return res.status(200).json({success:true,message:"bookings found",bookings})
+    } catch (error) {
+     return res.status(500).json({success:false,message:"internal server error",error:error.message})
+     
+    }
+  
+ 
+ }
